@@ -4,27 +4,494 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/* Dark-only theme — all variables set on :root */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #818cf8;
+  --ifm-color-primary-dark: #6366f1;
+  --ifm-color-primary-darker: #4f46e5;
+  --ifm-color-primary-darkest: #4338ca;
+  --ifm-color-primary-light: #a5b4fc;
+  --ifm-color-primary-lighter: #c7d2fe;
+  --ifm-color-primary-lightest: #e0e7ff;
+  --ifm-background-color: #0a0a0f;
+  --ifm-background-surface-color: #12121a;
+  --ifm-card-background-color: #12121a;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-font-family-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --ifm-font-color-base: #e2e8f0;
+  --ifm-font-color-secondary: #94a3b8;
+  --ifm-heading-color: #f1f5f9;
+  --ifm-navbar-background-color: #0a0a0f;
+  --ifm-navbar-link-color: #cbd5e1;
+  --ifm-navbar-link-hover-color: #fff;
+  --ifm-footer-background-color: #06060a;
+  --ifm-footer-color: #94a3b8;
+  --ifm-footer-link-color: #cbd5e1;
+  --ifm-footer-link-hover-color: #fff;
+  --ifm-footer-title-color: #e2e8f0;
+  --ifm-toc-link-color: #94a3b8;
+  --ifm-menu-color: #94a3b8;
+  --ifm-menu-color-active: #818cf8;
+  --ifm-menu-color-background-active: rgba(129, 140, 248, 0.08);
+  --ifm-color-emphasis-100: rgba(255, 255, 255, 0.04);
+  --ifm-color-emphasis-200: rgba(255, 255, 255, 0.07);
+  --ifm-color-emphasis-300: rgba(255, 255, 255, 0.1);
+  --ifm-color-emphasis-400: #475569;
+  --ifm-color-emphasis-500: #64748b;
+  --ifm-color-emphasis-600: #94a3b8;
+  --ifm-color-emphasis-700: #cbd5e1;
+  --ifm-color-emphasis-800: #e2e8f0;
+  --ifm-color-emphasis-900: #f1f5f9;
+  --ifm-hr-border-color: rgba(255, 255, 255, 0.06);
+  --ifm-table-stripe-background: rgba(255, 255, 255, 0.02);
+  --ifm-table-border-color: rgba(255, 255, 255, 0.06);
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.07);
+
+  /* Spacing & layout */
+  --ifm-global-radius: 10px;
+  --ifm-navbar-height: 4rem;
+  --ifm-navbar-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+  --ifm-pre-border-radius: 10px;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* ═══════════════════════════════════════════════════════════════════════════
+   Navbar
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.navbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  background: rgba(10, 10, 15, 0.85);
+}
+
+.navbar__title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #f1f5f9;
+}
+
+.navbar__link {
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.navbar__link--active {
+  color: #818cf8;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Sidebar
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.menu {
+  padding: 1rem 0.75rem;
+}
+
+.menu__link {
+  font-size: 0.88rem;
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.menu__link:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #e2e8f0;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: rgba(129, 140, 248, 0.1);
+  color: #a5b4fc;
+  font-weight: 600;
+}
+
+.menu__list-item-collapsible .menu__link {
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.menu__list-item-collapsible .menu__link:hover {
+  color: #94a3b8;
+  background: transparent;
+}
+
+nav.menu {
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Doc Page Content
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.markdown {
+  --ifm-heading-font-weight: 700;
+}
+
+.markdown h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f1f5f9;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.markdown h2 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #e2e8f0;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.markdown p {
+  line-height: 1.75;
+  color: #cbd5e1;
+}
+
+.markdown a {
+  color: #818cf8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.markdown a:hover {
+  color: #a5b4fc;
+  text-decoration: underline;
+}
+
+.markdown strong {
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.markdown hr {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 2.5rem 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tables
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.markdown table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 1.5rem 0;
+}
+
+.markdown th {
+  background: rgba(255, 255, 255, 0.04);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.markdown td {
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.markdown tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown tbody tr {
+  transition: background 0.15s;
+}
+
+.markdown tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Code Blocks
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.prism-code {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0d0d14 !important;
+  border-radius: 10px;
+}
+
+code {
+  background: rgba(129, 140, 248, 0.08);
+  color: #a5b4fc;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 0.88em;
+  font-weight: 500;
+}
+
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+.codeBlockTitle_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  color: #64748b !important;
+  font-size: 0.8rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Blockquotes / Admonitions
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+blockquote {
+  border-left: 3px solid #818cf8;
+  background: rgba(129, 140, 248, 0.05);
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  color: #94a3b8;
+}
+
+blockquote p {
+  color: #94a3b8;
+}
+
+.alert {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.alert--info {
+  background: rgba(59, 130, 246, 0.06);
+  border-color: rgba(59, 130, 246, 0.15);
+}
+
+.alert--warning {
+  background: rgba(251, 191, 36, 0.06);
+  border-color: rgba(251, 191, 36, 0.15);
+}
+
+.alert--success {
+  background: rgba(34, 197, 94, 0.06);
+  border-color: rgba(34, 197, 94, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Lists
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.markdown ul,
+.markdown ol {
+  line-height: 1.8;
+  color: #cbd5e1;
+}
+
+.markdown li::marker {
+  color: #475569;
+}
+
+.markdown li + li {
+  margin-top: 0.35rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TOC (Table of Contents — right sidebar)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.table-of-contents {
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+  padding-left: 0.75rem;
+}
+
+.table-of-contents__link {
+  font-size: 0.82rem;
+  color: #64748b;
+  transition: color 0.2s;
+}
+
+.table-of-contents__link:hover {
+  color: #a5b4fc;
+}
+
+.table-of-contents__link--active {
+  color: #818cf8;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Footer
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.footer__title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+.footer__link-item {
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footer__copyright {
+  font-size: 0.82rem;
+  color: #475569;
+  margin-top: 2rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Breadcrumbs
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.breadcrumbs__link {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.82rem;
+  color: #64748b;
+  transition: background 0.15s, color 0.15s;
+}
+
+.breadcrumbs__link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  background: rgba(129, 140, 248, 0.08);
+  color: #a5b4fc;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Pagination (prev/next at bottom of doc pages)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.pagination-nav__link {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.pagination-nav__link:hover {
+  border-color: rgba(129, 140, 248, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.pagination-nav__sublabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #475569;
+  font-weight: 600;
+}
+
+.pagination-nav__label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Search (if Algolia or search plugin is added)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.DocSearch-Button {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tip/Note custom admonitions
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[class*='admonition'] {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+[class*='admonitionHeading'] {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Scrollbar
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media screen and (max-width: 996px) {
+  .markdown h1 {
+    font-size: 1.8rem;
+  }
+
+  .markdown h2 {
+    font-size: 1.35rem;
+  }
 }

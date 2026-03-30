@@ -1,47 +1,68 @@
 ---
+id: intro
+title: Introduction
+sidebar_label: Introduction
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# BluesMinds API — Introduction
 
-Let's discover **Docusaurus in less than 5 minutes**.
+> **Base URL:** `https://api.bluesminds.com/v1` · **Console:** [api.bluesminds.com/console](https://api.bluesminds.com/console) · **Community:** [t.me/apibluesminds](https://t.me/apibluesminds)
 
-## Getting Started
+## What is BluesMinds?
 
-Get started by **creating a new site**.
+BluesMinds is a **unified AI gateway** that provides a single, standardized OpenAI-compatible API endpoint for accessing hundreds of Large Language Models (LLMs) from various providers — including OpenAI, Anthropic, Google, Mistral, and more.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+**Key benefits:**
+- 🔀 **Automatic failover** — traffic shifts to healthy providers instantly
+- 💸 **Cost optimization** — route to the most cost-effective model automatically
+- 🛡️ **Privacy controls** — logs can be disabled per-request
+- 🔌 **Drop-in compatibility** — works with existing OpenAI SDKs unchanged
 
-### What you'll need
+## Core Concepts
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+| Concept | Description |
+|---------|-------------|
+| **API Key** | Bearer token (`sk-...`) used for all `/v1/*` LLM calls |
+| **Session Token** | Short-lived token from `/api/user/login` for management endpoints |
+| **Model ID** | Provider-prefixed string like `provider-1/gpt-4o` or plain `gpt-4o` |
+| **Provider Routing** | BluesMinds selects the best upstream provider for each model |
+| **RPM** | Requests Per Minute — rate limit enforced per API key |
 
-## Generate a new site
+## Architecture Overview
 
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+```
+Your App (OpenAI SDK)
+        │
+        ▼
+ BluesMinds API Gateway (api.bluesminds.com/v1)
+        │
+        ├── Provider A (OpenAI)
+        ├── Provider B (Anthropic)
+        ├── Provider C (Google)
+        └── Provider D (Open-Source)
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+The gateway is fully transparent to your application — just change `base_url` and you're connected to all providers.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+## Quick Links
 
-## Start your site
+| Resource | Link |
+|----------|------|
+| Quickstart Guide | [→ Quickstart](/docs/quickstart) |
+| API Reference | [→ BluesMinds API](/docs/bluesminds-api) |
+| Models List | [→ Models](/docs/models) |
+| Pricing | [→ Pricing](/) |
+| Console / Dashboard | [api.bluesminds.com/console](https://api.bluesminds.com/console) |
+| Community (Telegram) | [t.me/apibluesminds](https://t.me/apibluesminds) |
 
-Run the development server:
+## Important: Get Your API Key
 
-```bash
-cd my-website
-npm run start
-```
+:::caution
+You must generate an API key from the [BluesMinds Console](https://api.bluesminds.com/console) before making any API calls.
+:::
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+1. Sign in at [api.bluesminds.com/console](https://api.bluesminds.com/console)
+2. Navigate to **Tokens** → **Create New Token**
+3. Copy the key (starts with `sk-`) and store it securely
+4. Set it as an environment variable: `export BLUESMINDS_API_KEY="sk-your-key"`

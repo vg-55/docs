@@ -57,7 +57,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'dark',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
     },
       navbar: {
         title: 'BluesMinds',
@@ -73,8 +75,23 @@ const config: Config = {
             label: 'Docs',
           },
           {
-            href: ' https://api.bluesminds.com/doc',
-            label: 'Platform Doc',
+            to: '/',
+            label: 'Pricing',
+            position: 'left',
+          },
+          {
+            href: 'https://api.bluesminds.com/console',
+            label: 'Console',
+            position: 'right',
+          },
+          {
+            href: 'https://t.me/apibluesminds',
+            label: 'Community',
+            position: 'right',
+          },
+          {
+            href: 'mailto:hello@bluesminds.com',
+            label: 'Support',
             position: 'right',
           },
       ],
@@ -106,6 +123,19 @@ const config: Config = {
                label: 'Marketplace',
                href: 'https://api.bluesminds.com/#/model-marketplace',
              },
+          ],
+        },
+        {
+          title: 'Support',
+          items: [
+            {
+              label: 'Email: hello@bluesminds.com',
+              href: 'mailto:hello@bluesminds.com',
+            },
+            {
+              label: 'Telegram: @vaibhavg000',
+              href: 'https://t.me/vaibhavg000',
+            },
           ],
         },
         {

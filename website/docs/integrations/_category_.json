@@ -1,0 +1,8 @@
+{
+  "label": "Integrations",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure popular AI coding tools — Claude Code, OpenAI Codex, Cursor, Continue.dev, Cline, and more — to use BluesMinds as their API provider."
+  }
+}

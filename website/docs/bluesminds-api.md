@@ -117,18 +117,28 @@ Example model snapshot:
 > **Note:** Always read `/v1/models` or `/v1beta/models` to confirm availability before hard-coding IDs.
 
 ## Pricing & Rate Limits
-- **Currency:** ¤ (credits). Charges are per request.
-- **Effective price:** `effective_price = base_price × token_group_multiplier`.
-- **Groups:** `default = 1x`, `vip = negotiated/0x promotional when applicable`.
 
-Sample prices (per request):
+### pi Credits (Free Plan)
+The **Free plan** includes **500 pi credits** on sign-up. Each API request deducts credits from your balance based on the model used. Credits do not expire.
 
-| Model | Group | Price (¤) |
-|---|---|---|
-| gpt-4.1 | default | 0.000 |
-| gpt-4o | default | 2.000 |
-| gemini-2.5-pro | vip | 10.000 |
-| gpt-5.1 | vip | 15.000 |
+| Model | Cost per Request |
+|-------|----------------|
+| `claude-opus-4-5` | **20 pi credits** |
+| `claude-sonnet-4-5` | **10 pi credits** |
+| Other models | Varies |
+
+> With 500 free credits: ~25 requests with `claude-opus-4-5`, ~50 requests with `claude-sonnet-4-5`.
+
+### Paid Plans (Unlimited Requests)
+Paid plans (10-Day Pass, Unlimited, Enterprise) use **unlimited requests** — no credit deduction applies.
+
+| Plan | Price | Duration | Base RPM | Extra RPM |
+|------|-------|----------|----------|-----------|
+| Free | $0 | Forever | 20 | — |
+| Trial Pack | $5 | 24 hours | 10 | — |
+| 10-Day Pass | $25 | 10 days | 10 | +$5 / 5 RPM |
+| Unlimited | $60 | /month | 15 | +$10 / 5 RPM |
+| Enterprise | Custom | — | Custom | Negotiated |
 
 Rate limits & backoff:
 - Expect per-key quotas; bursts allowed within limits.
